@@ -1,0 +1,552 @@
+{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "首页",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/recode/recode",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "记录",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/sunshine/sunshine",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "攒阳光",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/my/my",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "我的",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/exchangeCenter/exchangeCenter",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "兑换中心",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/userCenter/userCenter",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "用户中心",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/vip/vip",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "会员中心",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/dataReport/dataReport",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "数据报告",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/dataStatistics/dataStatistics",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "数据统计",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/weightData/weightData",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "体重数据",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/feedback/feedback",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "意见反馈",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/weightManagementPlan/weightManagementPlan",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "体重管理方案",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/historyPlan/historyPlan",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "历史方案",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/setReminder/setReminder",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "设置提醒",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/evaluation/evaluation",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "测评",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/addPlan/addPlan",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "创建计划",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/resetPlan/resetPlan",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "重置方案",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/historyWeightManagementPlan/historyWeightManagementPlan",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "体重管理方案",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/planSuggestion/planSuggestion",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "方案建议",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/dietaryRecord/dietaryRecord",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "添加饮食",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/foodAnalysis/foodAnalysis",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "每餐分析",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/webview/webview",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/protocol/protocol",
+      "style": {
+        // #ifndef H5
+        "navigationBarTitleText": "用户协议",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/privacy/privacy",
+      "style": {
+        // #ifndef H5
+        "navigationBarTitleText": "隐私政策",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/aiChat/aiChat",
+      "style": {
+        // #ifdef MP-WEIXIN
+        "usingComponents": {
+          "towxml": "/wxcomponents/towxml/towxml"
+        },
+        // #endif
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/healthAssistant/healthAssistant",
+      "style": {
+        // #ifdef MP-WEIXIN
+        "usingComponents": {
+          "towxml": "/wxcomponents/towxml/towxml"
+        },
+        // #endif
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/auorder/auorder",
+      "style": {
+        "navigationBarTitleText": "确认领取"
+      }
+    },
+    {
+      "path": "pages/success/success",
+      "style": {
+        "navigationBarTitleText": "领取成功"
+      }
+    },
+    {
+      "path": "pages/receiveRedPacket/receiveRedPacket",
+      "style": {
+        "navigationBarTitleText": "领取红包"
+      }
+    },
+    {
+      "path": "pages/profile/profile",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "编辑资料",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/changePhone/changePhone",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "更改手机号",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    },
+    {
+      "path": "pages/renewalManage/renewalManage",
+      "style": {
+        "navigationStyle": "custom",
+        // #ifndef H5
+        "navigationBarTitleText": "续订管理",
+        // #endif
+        "h5": {
+          "titleNView": false
+        },
+        "app-plus": {
+          "softinputMode": "adjustResize"
+        }
+      }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "packageLogin",
+      "name": "packageLogin",
+      "pages": [
+        {
+          "path": "pages/login/login",
+          "style": {
+            "navigationStyle": "custom",
+            // #ifndef H5
+            "navigationBarTitleText": "登录",
+            // #endif
+            "h5": {
+              "titleNView": false
+            },
+            "app-plus": {
+              "softinputMode": "adjustResize"
+            }
+          }
+        },
+        {
+          "path": "pages/oneKeyLogin/oneKeyLogin",
+          "style": {
+            "navigationStyle": "custom",
+            // #ifndef H5
+            "navigationBarTitleText": "一键登录",
+            // #endif
+            "h5": {
+              "titleNView": false
+            },
+            "app-plus": {
+              "softinputMode": "adjustResize"
+            }
+          }
+        },
+        {
+          "path": "pages/logout/logout",
+          "style": {
+            "navigationStyle": "custom",
+            // #ifndef H5
+            "navigationBarTitleText": "注销账户",
+            // #endif
+            "h5": {
+              "titleNView": false
+            },
+            "app-plus": {
+              "softinputMode": "adjustResize"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "tabBar": {
+    "color": "#1A1A1A",
+    "selectedColor": "#1A1A1A",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/tabBar/home.png",
+        "selectedIconPath": "static/tabBar/home1.png"
+      },
+      {
+        "pagePath": "pages/recode/recode",
+        "text": "记录",
+        "iconPath": "static/tabBar/recode.png",
+        "selectedIconPath": "static/tabBar/recode1.png"
+      },
+      {
+        "pagePath": "pages/sunshine/sunshine",
+        "text": "攒阳光",
+        "iconPath": "static/tabBar/sunshine.png",
+        "selectedIconPath": "static/tabBar/sunshine1.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/tabBar/my.png",
+        "selectedIconPath": "static/tabBar/my1.png"
+      }
+    ]
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#ffffff"
+  }
+}

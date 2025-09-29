@@ -1,0 +1,42 @@
+// uni-ui 样式
+// APP需要单独引入字体
+// #ifdef APP-PLUS
+// @font-face {
+//   font-family: 'uniicons';
+//   src: url('./static/font/uniicons.ttf') format('truetype');
+// }
+
+// .uniicons {
+//   font-family: 'uniicons' !important;
+//   vertical-align: middle;
+//   font-style: normal;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+// }
+// #endif
+
+page {
+  --page-title-height: calc(var(--status-bar-height) + 120rpx);
+  --page-title-padding-top: calc(var(--status-bar-height) + 68rpx);
+}
+
+// 页面 title
+.page-title {
+  position: fixed;
+  height: calc(var(--page-title-height));
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding-top: calc(var(--page-title-padding-top));
+  color: #1a1a1a;
+  font-size: 32rpx;
+  font-weight: bold;
+  z-index: 9;
+
+  .back {
+    position: absolute;
+    bottom: 6rpx;
+    left: 15rpx;
+  }
+}
