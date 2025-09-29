@@ -1,143 +1,58 @@
 <template>
   <view class="index-page">
-    <view class="page-title">首页</view>
-
     <view class="banner">
-      <view class="score">
-        <view class="left">
-          <view class="number">
-            <text v-if="isWeightLoss">{{ (homeWeightPlanData && homeWeightPlanData.weight_loss) || 0 }}</text>
-            <text v-else>{{ (homeWeightPlanData && -homeWeightPlanData.weight_loss) || 0 }}</text>
-            <text>公斤</text>
-          </view>
-
-          <view class="tip">{{ isWeightLoss ? '「已减重」' : '「已增肌」' }}</view>
-        </view>
-
-        <view class="right">
-          <view v-if="!isLogin" class="add-plan" @click="addPlan">
-            <text class="add-text">请先登录</text>
-            <view class="tip">
-              <text>登录账号后</text>
-              <text>获取专属减脂方案</text>
-            </view>
-          </view>
-
-          <template v-else-if="homeWeightPlanData">
-            <view v-if="homeWeightPlanData.state === 1" class="detail" @click="goWeightManage">
-              <view class="item">
-                <text>{{ homeWeightPlanData.plan_countdown }}天</text>
-                <text>计划倒计时</text>
-              </view>
-
-              <view class="item">
-                <text>{{ homeWeightPlanData.plan_target_weight }}KG</text>
-                <text>目标体重</text>
-              </view>
-            </view>
-
-            <view v-else-if="homeWeightPlanData.state === 2" class="add-plan" @click="addPlan">
-              <text class="add-icon">+</text>
-
-              <text class="add-text">创建下阶段计划</text>
-              <view class="tip">
-                <text>恭喜达成</text>
-                <text>继续趁热打铁</text>
-              </view>
-            </view>
-
-            <view v-else-if="homeWeightPlanData.state === 3" class="add-plan" @click="addPlan">
-              <text class="add-icon">+</text>
-
-              <text class="add-text">创建下阶段计划</text>
-              <view class="tip">
-                <text>计划已过期</text>
-                <text>请重新创建</text>
-              </view>
-            </view>
-          </template>
-
-          <view v-else class="add-plan" @click="addPlan">
-            <text class="add-icon">+</text>
-
-            <template v-if="userDetailInfo">
-              <text class="add-text">创建计划</text>
-              <view class="tip">
-                <text>科学合理的计划</text>
-                <text>是减脂成功的第一步哦</text>
-              </view>
-            </template>
-
-            <template v-else>
-              <text class="add-text">补充信息</text>
-              <view class="tip">
-                <text>补充信息后</text>
-                <text>获取专属减脂方案</text>
-              </view>
-            </template>
-          </view>
-        </view>
-      </view>
-
-      <view class="progress-container" @click="jumpAi(jkzsChat)">
+      <view class="progress-container">
         <view class="progress">
-          <view class="img">
-            <image mode="widthFix" src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app/home/doctor2.png" />
-            <image
-              mode="widthFix"
-              src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app/home/tip-btn2.png"
-            />
-          </view>
+          <image
+            class="banner1-img"
+            mode="widthFix"
+            src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/banner1.png"
+          />
 
-          <view class="current">当前</view>
-          <view class="target">目标</view>
-        </view>
-
-        <view class="progress-chart">
-          <view style="width: 750rpx">
-            <l-echart ref="chartRef" @finished="initChart" />
-          </view>
+          <image
+            class="btn1"
+            mode="widthFix"
+            src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/btn1.png"
+          />
         </view>
       </view>
     </view>
 
-    <view class="get-way-btn" @click="goWeightManage">
-      <image
-        v-if="homeWeightPlanData && homeWeightPlanData.state === 1"
-        mode="widthFix"
-        src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app/home/get-way-btn2.png"
-      />
-
-      <image
-        v-else
-        mode="widthFix"
-        src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app/home/get-way-btn.png"
-      />
+    <view class="get-way-btn">
+      <view class="imgs">
+        <!-- TODO 图片缺失 -->
+        <image mode="widthFix" src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/adv1.png" />
+        <image mode="widthFix" src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/adv1.png" />
+      </view>
     </view>
 
     <view class="ai">
-      <view class="ai-title">
-        <image mode="widthFix" src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app/home/ai-icon.png" />
-      </view>
-
-      <view class="ai-list">
-        <view class="item1">
-          <view
-            :style="{
-              background: `url(${item.logo}) left top/100% auto no-repeat`,
-            }"
-            v-for="item of aiChartList.slice(0, 3)"
-            :key="item.id"
-            @click="jumpAi(item)"
-          >
-            <text>{{ item.name }}</text>
-          </view>
+      <view class="ai-content">
+        <view class="ai-title">
+          <image mode="widthFix" src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/ai-icon.png" />
         </view>
 
-        <view class="item2">
-          <view v-for="item of aiChartList.slice(3)" :key="item.id" @click="jumpAi(item)">
-            <text>{{ item.name }}</text>
-            <image mode="widthFix" :src="item.logo" />
+        <view class="ai-list">
+          <view class="item1">
+            <view v-for="item of aiChartList.slice(0, 2)" :key="item.id" @click="jumpAi(item)">
+              <text>{{ item.name }}</text>
+              <image mode="widthFix" :src="item.logo" />
+            </view>
+          </view>
+
+          <view class="item2">
+            <view v-for="item of aiChartList.slice(2, 8)" :key="item.id" @click="jumpAi(item)">
+              <text>{{ item.name }}</text>
+              <image mode="widthFix" :src="item.logo" />
+            </view>
+          </view>
+
+          <view class="item3">
+            <view v-for="item of aiChartList.slice(8, 9)" :key="item.id" @click="jumpAi(item)">
+              <text class="name">{{ item.name }}</text>
+              <text class="title">专属营养方案</text>
+              <image mode="widthFix" :src="item.logo" />
+            </view>
           </view>
         </view>
       </view>
@@ -390,278 +305,186 @@ export default {
 
 <style scoped lang="scss">
 .index-page {
-  .page-title {
-  }
+  background: #f2f3ee url('https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/bg.png') left top/100%
+    auto no-repeat;
+  padding-bottom: 40rpx;
 
   .banner {
-    padding: calc(var(--page-title-height) + 35rpx) 0 37rpx;
-    background: url('https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app/home/banner-bg.png') left top/100% auto
-      no-repeat;
+    margin-bottom: 30rpx;
 
-    .score {
-      padding: 0 30rpx;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 22rpx;
+    .progress-container {
+      padding: 200rpx 30rpx 0;
 
-      .left {
+      .progress {
+        padding: 0 0 30rpx;
+        height: 727rpx;
+        background: #ffffff;
+        border-radius: 30rpx;
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        .number {
-          margin-bottom: 20rpx;
-          font-weight: bold;
-          color: #111111;
-
-          text {
-            &:nth-child(1) {
-              font-size: 170rpx;
-            }
-
-            &:nth-child(2) {
-              font-size: 32rpx;
-            }
-          }
-        }
-
-        .tip {
-          font-size: 36rpx;
-          color: #1a1a1a;
-          font-weight: 500;
-        }
-      }
-
-      .right {
-        background: #ffffff;
-        width: 240rpx;
-        height: 240rpx;
-        border-radius: 20rpx;
         position: relative;
 
-        .login {
+        .banner1-img {
           position: absolute;
-          left: 0;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 28rpx;
-          color: #aaaaaa;
+          top: -110rpx;
+          width: 564rpx;
+          margin-bottom: 30rpx;
         }
 
-        .detail {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 44rpx;
-
-          .item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            text {
-              &:nth-child(1) {
-                font-size: 28rpx;
-                color: #111111;
-                font-weight: 500;
-                margin-bottom: 16rpx;
-              }
-
-              &:nth-child(2) {
-                font-size: 22rpx;
-                color: #999999;
-              }
-            }
-          }
-        }
-
-        .add-plan {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 24rpx;
-
-          .add-icon {
-            background: #bef054;
-            border-radius: 50%;
-            width: 39rpx;
-            height: 39rpx;
-            font-size: 28rpx;
-            color: #333333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-
-          .add-text {
-            font-size: 28rpx;
-            color: #111111;
-            font-weight: 500;
-          }
-
-          .tip {
-            font-size: 22rpx;
-            color: #999999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            text {
-              line-height: 29rpx;
-            }
-          }
-        }
-      }
-    }
-
-    .progress-container {
-      padding: 64rpx 68rpx 0;
-      position: relative;
-
-      .progress {
-        position: relative;
-        padding-bottom: 14rpx;
-
-        .img {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-
-          image {
-            &:nth-child(1) {
-              width: 284rpx;
-            }
-
-            &:nth-child(2) {
-              width: 384rpx;
-            }
-          }
-        }
-
-        .current,
-        .target {
+        .btn1 {
           position: absolute;
-          bottom: 0;
-          width: 96rpx;
-          height: 50rpx;
-          border-radius: 25rpx;
-          font-size: 28rpx;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          &.current {
-            left: 0;
-            color: #111111;
-            background: #9ae9cc;
-          }
-
-          &.target {
-            right: 0;
-            color: #ffffff;
-            background: #0abf92;
-          }
+          bottom: 30rpx;
+          width: 497rpx;
         }
-      }
-
-      .progress-chart {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        overflow: hidden;
       }
     }
   }
 
   .get-way-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 40rpx;
+    margin-bottom: 30rpx;
 
-    image {
-      width: 690rpx;
+    .imgs {
+      padding: 0 30rpx;
+      display: flex;
+      align-items: center;
+      gap: 10rpx;
+      overflow: auto;
+
+      image {
+        flex-shrink: 0;
+        width: 556rpx;
+      }
     }
   }
 
   .ai {
-    background: linear-gradient(0deg, #fcfcfc 0%, #f3f7fa 100%);
-    box-shadow: 0 0 40rpx 0 rgba(236, 237, 233, 0.77);
-    border-radius: 50rpx 50rpx 0 0;
-    border: 2px solid #ffffff;
-    padding: 40rpx 52rpx;
+    padding: 0 30rpx;
 
-    .ai-title {
-      margin-bottom: 38rpx;
+    .ai-content {
+      padding: 35rpx;
+      background: #ffffff;
+      border-radius: 30rpx;
 
-      image {
-        width: 180rpx;
-      }
-    }
+      .ai-title {
+        margin-bottom: 38rpx;
 
-    .ai-list {
-      font-weight: 500;
-
-      .item1 {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 20rpx;
-
-        view {
-          width: 202rpx;
-          height: 180rpx;
-          text-align: center;
-
-          text {
-            position: relative;
-            top: 124rpx;
-            font-size: 28rpx;
-            color: #1a1a1a;
-          }
+        image {
+          width: 181rpx;
         }
       }
 
-      .item2 {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-
-        view {
-          width: 314rpx;
-          height: 130rpx;
-          padding: 0 30rpx 0 34rpx;
-          background: #ffffff;
-          border-radius: 20rpx;
-          margin-bottom: 20rpx;
+      .ai-list {
+        .item1 {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          gap: 20rpx;
+          margin-bottom: 20rpx;
 
-          text {
-            font-size: 28rpx;
-            color: #1a1a1a;
+          view {
+            flex-grow: 1;
+            height: 129rpx;
+            padding: 0 20rpx;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 10rpx;
+
+            &:nth-child(1) {
+              background: #f6f9ff;
+            }
+
+            &:nth-child(2) {
+              background: #fcf6f4;
+            }
+
+            text {
+              font-size: 24rpx;
+              color: #000000;
+            }
+
+            image {
+              width: 83rpx;
+              flex-shrink: 0;
+            }
           }
+        }
 
-          image {
-            width: 64rpx;
+        .item2 {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 20rpx;
+          flex-wrap: wrap;
+          margin-bottom: 20rpx;
+
+          view {
+            width: calc(33.3% - 14rpx);
+            height: 129rpx;
+            padding: 0 14rpx;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 10rpx;
+
+            &:nth-child(1) {
+              background: #fef7ef;
+            }
+
+            &:nth-child(2) {
+              background: #f7f2f8;
+            }
+
+            &:nth-child(3) {
+              background: #f3fdff;
+            }
+
+            &:nth-child(4) {
+              background: #f2fff4;
+            }
+
+            &:nth-child(5) {
+              background: #fdfaf3;
+            }
+
+            &:nth-child(6) {
+              background: #fff6f5;
+            }
+
+            text {
+              font-size: 24rpx;
+              color: #000000;
+              line-height: 33rpx;
+            }
+
+            image {
+              flex-shrink: 0;
+              width: 75rpx;
+            }
+          }
+        }
+
+        .item3 {
+          view {
+            width: 100%;
+            height: 129rpx;
+            padding: 0 30rpx;
+            display: flex;
+            align-items: center;
+            background: url('https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/bg2.png') left top/100%
+              100% no-repeat;
+
+            .name {
+              font-size: 24rpx;
+              color: #000000;
+              margin-right: 30rpx;
+            }
+
+            .title {
+              font-size: 22rpx;
+              color: #b3b5b5;
+            }
           }
         }
       }
