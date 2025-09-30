@@ -263,13 +263,13 @@ export default {
           this.option.series[0].data[0].value = ratio;
 
           setTimeout(() => {
-            chart.setOption(this.option);
+            chart && chart.setOption(this.option);
           }, 500);
         } else {
           this.option.series[0].data[0].value = 0;
 
           setTimeout(() => {
-            chart.setOption(this.option);
+            chart && chart.setOption(this.option);
           }, 500);
         }
       });

@@ -8,7 +8,7 @@
       </view>
     </view>
 
-    <view class="banner"> </view>
+    <view class="banner"></view>
 
     <view class="evaluation-container">
       <view class="evaluation-box">
@@ -27,7 +27,7 @@
             <view class="gender-item" @click="gender = 1">
               <image
                 mode="widthFix"
-                src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app/evaluation/gender1.png"
+                src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/evaluation/gender1.png"
               />
               <text>男生</text>
               <view class="checked" v-if="gender === 1">
@@ -38,7 +38,7 @@
             <view class="gender-item" @click="gender = 2">
               <image
                 mode="widthFix"
-                src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app/evaluation/gender2.png"
+                src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/evaluation/gender2.png"
               />
               <text>女生</text>
               <view class="checked" v-if="gender === 2">
@@ -433,7 +433,8 @@ page {
 <style scoped lang="scss">
 .evaluation-page {
   height: 100%;
-  background: linear-gradient(to bottom, #ccffee, #fbffff, #f6f7fb);
+  background: #f2f3ee url('https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/bg.png') left top/100%
+    auto no-repeat;
   padding-bottom: 40rpx;
   display: flex;
   flex-direction: column;
@@ -455,7 +456,7 @@ page {
       height: 100%;
       padding: 52rpx 30rpx;
       background: #ffffff;
-      border-radius: 8rpx;
+      border-radius: 25rpx;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -482,7 +483,7 @@ page {
           left: 0;
           top: 0;
           bottom: 0;
-          background: #0abf92;
+          background: #35d16e;
           border-radius: 8rpx;
         }
       }
@@ -677,7 +678,7 @@ page {
                 text {
                   height: 60rpx;
                   padding: 0 16rpx;
-                  background: #0abf92;
+                  background: #35d16e;
                   border-radius: 10rpx;
                   display: flex;
                   align-items: center;
@@ -727,7 +728,7 @@ page {
             &.active {
               background: #f1fffc;
               color: #1a1a1a;
-              border: 6rpx solid #0abf92;
+              border: 6rpx solid #35d16e;
             }
           }
         }
@@ -737,11 +738,11 @@ page {
         flex-shrink: 0;
         width: 592rpx;
         height: 103rpx;
-        background: #0abf92;
+        background: #b7fe20;
         border-radius: 52rpx;
         font-weight: 500;
         font-size: 32rpx;
-        color: #ffffff;
+        color: #000000;
         display: flex;
         align-items: center;
         justify-content: center;

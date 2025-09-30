@@ -1,17 +1,22 @@
 <template>
   <view class="evaluation-page">
     <view class="page-title">
-      <text>创建计划</text>
+      <text></text>
 
       <view class="back" @click="$toBack">
         <uni-icons class="back" color="#1A1A1A" type="left" size="22"></uni-icons>
       </view>
     </view>
 
-    <view class="banner"> </view>
+    <view class="banner"></view>
 
     <view class="evaluation-container">
       <view class="evaluation-box">
+        <view class="evaluation-title">
+          <text>{{ evaluationList[stepIndex].title }}</text>
+          <text>{{ evaluationList[stepIndex].subTitle }}</text>
+        </view>
+
         <view class="evaluation evaluation2" v-if="stepIndex === 0">
           <view class="evaluation-item">
             <view class="evaluation-item-title">目标体重</view>
@@ -90,7 +95,7 @@
           </view>
         </view>
 
-        <view class="next" @click="next">{{ stepIndex > 0 ? '生成方案' : '继续' }}</view>
+        <view class="next" @click="next">{{ stepIndex > 0 ? '获取方案' : '继续' }}</view>
       </view>
     </view>
   </view>
@@ -118,6 +123,16 @@ export default {
     }
 
     return {
+      evaluationList: [
+        {
+          title: '请选择你的体重和目标体重',
+          subTitle: '用来准确的计算你的BMI值',
+        },
+        {
+          title: '预计达成时间',
+          subTitle: '',
+        },
+      ],
       stepIndex: 0,
       gender: null,
       targetWeight: null,
@@ -241,7 +256,8 @@ page {
 <style scoped lang="scss">
 .evaluation-page {
   height: 100%;
-  background: linear-gradient(to bottom, #ccffee, #fbffff, #f6f7fb);
+  background: #f2f3ee url('https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/bg.png') left top/100%
+    auto no-repeat;
   padding-bottom: 40rpx;
   display: flex;
   flex-direction: column;
@@ -263,11 +279,33 @@ page {
       height: 100%;
       padding: 52rpx 30rpx;
       background: #ffffff;
-      border-radius: 8rpx;
+      border-radius: 25rpx;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
+      .evaluation-title {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30rpx;
+
+        text {
+          &:nth-child(1) {
+            font-weight: 500;
+            font-size: 32rpx;
+            color: #333333;
+          }
+
+          &:nth-child(2) {
+            font-size: 24rpx;
+            color: #999999;
+          }
+        }
+      }
 
       .evaluation {
         flex-grow: 1;
@@ -420,11 +458,11 @@ page {
         flex-shrink: 0;
         width: 592rpx;
         height: 103rpx;
-        background: #0abf92;
+        background: #b7fe20;
         border-radius: 52rpx;
         font-weight: 500;
         font-size: 32rpx;
-        color: #ffffff;
+        color: #000000;
         display: flex;
         align-items: center;
         justify-content: center;

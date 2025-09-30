@@ -214,7 +214,7 @@ export default {
         color: #ffffff;
 
         text {
-          background: #0abf92;
+          background: #35d16e;
         }
       }
 
