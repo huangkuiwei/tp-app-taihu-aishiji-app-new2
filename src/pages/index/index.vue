@@ -2,7 +2,50 @@
   <view class="index-page">
     <view class="banner">
       <view class="progress-container">
-        <view class="progress">
+        <view class="progress chart-progress" v-if="homeWeightPlanData && homeWeightPlanData.state === 1">
+          <view class="title">
+            <text class="title-text">体重管理方案</text>
+
+            <view class="time">
+              <text>第</text>
+              <text>{{ homeWeightPlanData.useWeek }}/{{ homeWeightPlanData.totalWeek }}</text>
+              <text>周</text>
+            </view>
+          </view>
+
+          <view class="chart">
+            <view class="left">
+              <text>{{ homeWeightPlanData.plan_initial_weight.toFixed(2) }}</text>
+              <text>初始</text>
+            </view>
+
+            <view class="center">
+              <text v-if="isWeightLoss">{{
+                ((homeWeightPlanData && homeWeightPlanData.weight_loss) || 0).toFixed(2)
+              }}</text>
+              <text v-else>{{ ((homeWeightPlanData && -homeWeightPlanData.weight_loss) || 0).toFixed(2) }}</text>
+              <text>{{ isWeightLoss ? '「已减去」' : '「已增肌」' }}（公斤）</text>
+            </view>
+
+            <view class="right">
+              <text>{{ homeWeightPlanData.plan_target_weight.toFixed(2) }}</text>
+              <text>目标</text>
+            </view>
+
+            <view class="chart-box">
+              <l-echart ref="chartRef" @finished="initChart" />
+            </view>
+          </view>
+
+          <image
+            @click="goWeightManage"
+            class="btn2"
+            mode="widthFix"
+            src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/btn2.png"
+          />
+        </view>
+
+        <view class="progress" style="height: 727rpx" v-else>
           <image
             class="banner1-img"
             mode="widthFix"
@@ -10,6 +53,7 @@
           />
 
           <image
+            @click="addPlan"
             class="btn1"
             mode="widthFix"
             src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/btn1.png"
@@ -20,9 +64,9 @@
 
     <view class="get-way-btn">
       <view class="imgs">
-        <!-- TODO 图片缺失 -->
+        <!-- TODO 跳转事件 -->
         <image mode="widthFix" src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/adv1.png" />
-        <image mode="widthFix" src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/adv1.png" />
+        <image mode="widthFix" src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/adv2.png" />
       </view>
     </view>
 
@@ -81,22 +125,13 @@ export default {
         series: [
           {
             type: 'gauge',
-            startAngle: 210,
-            endAngle: -30,
+            startAngle: 180,
+            endAngle: 0,
             min: 0,
             max: 100,
             splitNumber: 12,
             itemStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: '#0ABF92', // 起始颜色
-                },
-                {
-                  offset: 1,
-                  color: '#9AE9CC', // 结束颜色
-                },
-              ]),
+              color: '#7DBF2A',
               shadowColor: 'transparent',
               shadowBlur: 10,
               shadowOffsetX: 2,
@@ -105,7 +140,7 @@ export default {
             progress: {
               show: true,
               roundCap: true,
-              width: 16,
+              width: 10,
             },
             pointer: {
               show: false,
@@ -113,8 +148,8 @@ export default {
             axisLine: {
               roundCap: true,
               lineStyle: {
-                width: 16,
-                color: [[1, '#9AE9CC']],
+                width: 10,
+                color: [[1, '#EEEEEE']],
               },
             },
             radius: '100%',
@@ -202,6 +237,15 @@ export default {
      */
     getHomeWeightPlan() {
       return $http.get('api/diet-info/weight-plan/home').then((res) => {
+        if (res.data) {
+          let totalWeek =
+            (new Date(res.data.end_date.replace(/-/g, '/')) - new Date(res.data.start_date.replace(/-/g, '/'))) /
+            (1000 * 3600 * 24 * 7);
+          let useWeek = (new Date() - new Date(res.data.start_date.replace(/-/g, '/'))) / (1000 * 3600 * 24 * 7);
+          res.data.totalWeek = Math.ceil(totalWeek);
+          res.data.useWeek = Math.ceil(useWeek);
+        }
+
         this.homeWeightPlanData = res.data;
 
         if (this.homeWeightPlanData) {
@@ -317,7 +361,6 @@ export default {
 
       .progress {
         padding: 0 0 30rpx;
-        height: 727rpx;
         background: #ffffff;
         border-radius: 30rpx;
         display: flex;
@@ -336,6 +379,95 @@ export default {
           position: absolute;
           bottom: 30rpx;
           width: 497rpx;
+        }
+      }
+
+      .chart-progress {
+        padding: 34rpx;
+
+        .title {
+          align-self: stretch;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .title-text {
+            font-weight: bold;
+            font-size: 32rpx;
+            color: #404141;
+          }
+
+          .time {
+            font-weight: 500;
+            font-size: 29rpx;
+            color: #404141;
+            display: flex;
+            align-items: center;
+
+            text {
+              &:nth-child(2) {
+                margin: 0 10rpx;
+                padding: 2rpx 10rpx;
+                background: #e3ffbf;
+                border-radius: 10rpx;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+
+        .chart {
+          align-self: stretch;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          position: relative;
+          padding-top: 148rpx;
+          margin-bottom: 89rpx;
+
+          .left,
+          .right,
+          .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18rpx;
+
+            &.center {
+              text {
+                &:nth-child(1) {
+                  font-size: 47rpx;
+                }
+              }
+            }
+
+            text {
+              color: #000000;
+
+              &:nth-child(1) {
+                font-weight: 500;
+                font-size: 40rpx;
+              }
+
+              &:nth-child(2) {
+                font-size: 25rpx;
+              }
+            }
+          }
+
+          .chart-box {
+            position: absolute;
+            top: -70rpx;
+            left: 140rpx;
+            width: 340rpx;
+          }
+        }
+
+        .btn2 {
+          width: 497rpx;
+          position: relative;
+          z-index: 9;
         }
       }
     }
