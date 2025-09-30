@@ -11,11 +11,27 @@
     <view class="banner"></view>
 
     <scroll-view class="chat-box" :scroll-y="true" :show-scrollbar="false" :scroll-top="scrollTop">
-      <view class="chat-introduce">
-        <view class="title">{{ aiTitle }}</view>
+      <view class="chat-list">
+        <view
+          class="chat-item"
+          :class="{ question: item.role === 1, answer: item.role === 2 }"
+          v-for="item of chatList.slice(0, 1)"
+          :key="item.id"
+        >
+          <image
+            v-if="item.role === 2"
+            class="head"
+            mode="widthFix"
+            src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/aiChat/head.png"
+          />
+          <text v-if="item.role === 1">{{ item.content }}</text>
+          <towxml v-else :nodes="item.content"></towxml>
+        </view>
+      </view>
 
+      <view class="chat-introduce">
         <view class="question">
-          <view class="question-title">猜你想说</view>
+          <view class="question-title">猜你想问</view>
           <view class="question-list">
             <view class="question-item" v-for="item of questionList" :key="item.id" @click="selectQuestion(item)">
               {{ item.text }}
@@ -28,9 +44,15 @@
         <view
           class="chat-item"
           :class="{ question: item.role === 1, answer: item.role === 2 }"
-          v-for="item of chatList"
+          v-for="item of chatList.slice(1)"
           :key="item.id"
         >
+          <image
+            v-if="item.role === 2"
+            class="head"
+            mode="widthFix"
+            src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/aiChat/head.png"
+          />
           <text v-if="item.role === 1">{{ item.content }}</text>
           <towxml v-else :nodes="item.content"></towxml>
         </view>
@@ -39,11 +61,9 @@
 
     <view class="message-box">
       <view class="input-box">
-        <image mode="widthFix" src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app/aiChat/edit.png" />
-
         <input
           type="text"
-          placeholder="说点什么..."
+          placeholder="有问题尽管问我~"
           :value="questionText"
           @input="questionText = $event.detail.value"
         />
@@ -51,7 +71,7 @@
 
       <view class="send" :class="{ disabled: answering }" @click="sendMessage">发送</view>
 
-      <view class="ai-tip"> 本服务为AI生成内容，结果仅供参考 </view>
+      <view class="ai-tip">内容由AI生成，仅供参考</view>
     </view>
   </view>
 </template>
@@ -475,54 +495,51 @@ page {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: url('https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app/aiChat/bg1.png') left top/100% auto
-    no-repeat;
+  background: #f2f3ee url('https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/bg.png') left top/100%
+    auto no-repeat;
 
   .page-title {
+    background: #ffffff;
   }
 
   .banner {
     flex-shrink: 0;
     padding: calc(var(--page-title-height)) 0 0;
+    background: #ffffff;
   }
 
   .chat-box {
-    padding: 104rpx 30rpx 50rpx;
+    padding: 40rpx 30rpx 50rpx;
     flex-grow: 1;
     overflow: auto;
 
     .chat-introduce {
-      background: url('https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app/aiChat/bg3.png') left top/100% 100%
-        no-repeat;
-      padding: 84rpx 22rpx 50rpx;
-      margin-bottom: 43rpx;
-
-      .title {
-        font-size: 26rpx;
-        color: #111111;
-        margin-bottom: 73rpx;
-        padding-left: 103rpx;
-        white-space: nowrap;
-      }
+      display: flex;
+      justify-content: flex-end;
+      margin: 28rpx 0;
 
       .question {
+        width: calc(100% - 100rpx);
+        background: #ebffd1;
+        border-radius: 30rpx;
+        padding: 20rpx;
+
         .question-title {
-          font-weight: bold;
-          font-size: 26rpx;
-          color: #111111;
-          margin-bottom: 33rpx;
+          font-size: 27rpx;
+          color: #090706;
+          margin-bottom: 21rpx;
         }
 
         .question-list {
           display: flex;
           flex-direction: column;
-          gap: 10rpx;
+          gap: 14rpx;
 
           .question-item {
-            height: 60rpx;
+            height: 48rpx;
             background: #ffffff;
-            border-radius: 30rpx;
-            padding: 0 30rpx;
+            border-radius: 10rpx;
+            padding: 0 18rpx;
             display: flex;
             align-items: center;
             font-size: 24rpx;
@@ -538,25 +555,35 @@ page {
       gap: 43rpx;
 
       .chat-item {
-        max-width: 90%;
         white-space: wrap;
         word-break: break-word;
         line-height: 40rpx;
         font-size: 26rpx;
+        position: relative;
+
+        .head {
+          width: 80rpx;
+          position: absolute;
+          top: 0;
+          left: -100rpx;
+        }
 
         &.question {
+          max-width: 100%;
           padding: 18rpx 24rpx;
-          background: #0abf92;
-          border-radius: 25rpx 5rpx 25rpx 25rpx;
+          background: #35d16e;
+          border-radius: 10rpx;
           color: #ffffff;
           align-self: flex-end;
         }
 
         &.answer {
+          max-width: calc(100% - 100rpx);
+          left: 100rpx;
           padding: 0 24rpx;
           min-width: 50%;
           background: #ffffff;
-          border-radius: 5rpx 25rpx 25rpx 25rpx;
+          border-radius: 30rpx;
           color: #111111;
           align-self: flex-start;
         }
@@ -583,25 +610,21 @@ page {
       align-items: center;
       margin-right: 20rpx;
 
-      image {
-        width: 32rpx;
-        margin-right: 14rpx;
-      }
-
       input {
         flex-grow: 1;
-        font-size: 26rpx;
+        font-size: 24rpx;
+        color: #090706;
       }
     }
 
     .send {
       flex-shrink: 0;
-      width: 180rpx;
-      height: 80rpx;
-      background: #0abf92;
-      border-radius: 40rpx;
+      width: 174rpx;
+      height: 71rpx;
+      background: #35d16e;
+      border-radius: 35rpx;
       font-weight: 500;
-      font-size: 32rpx;
+      font-size: 30rpx;
       color: #ffffff;
       display: flex;
       align-items: center;
@@ -619,8 +642,8 @@ page {
       left: 0;
       right: 0;
       text-align: center;
-      font-size: 20rpx;
-      color: #cccccc;
+      font-size: 16rpx;
+      color: #bcbcbc;
     }
   }
 }
