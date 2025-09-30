@@ -125,7 +125,7 @@ export default {
     return {
       evaluationList: [
         {
-          title: '请选择你的体重和目标体重',
+          title: '请选择你的目标体重',
           subTitle: '用来准确的计算你的BMI值',
         },
         {
