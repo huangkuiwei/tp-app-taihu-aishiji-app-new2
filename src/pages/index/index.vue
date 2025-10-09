@@ -76,6 +76,7 @@
           <image mode="widthFix" src="https://hnenjoy.oss-cn-shanghai.aliyuncs.com/food-diary-app3/index/ai-icon.png" />
         </view>
 
+        <!-- TODO 后端修改ai搭子数据顺序和icon -->
         <view class="ai-list">
           <view class="item1">
             <view v-for="item of aiChartList.slice(0, 2)" :key="item.id" @click="jumpAi(item)">
