@@ -106,6 +106,9 @@ export default {
   },
 
   onLoad(options) {
+    options.start_date = decodeURIComponent(options.start_date);
+    options.end_date = decodeURIComponent(options.end_date);
+
     let plan_target_weight = this.rulerLineList.findIndex((item) => item === Number(options.plan_target_weight));
     let end_date = options.end_date.slice(0, 10);
     let start_date = options.start_date.slice(0, 10);

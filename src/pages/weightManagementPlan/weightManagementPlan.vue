@@ -176,7 +176,7 @@
 
             <view @click.capture.stop="onCheckboxClick(item)" v-else>
               <checkbox-group>
-                <checkbox value="1" :checked="item.is_completed.includes('1')" />
+                <checkbox color="#3DBC08" value="1" :checked="item.is_completed.includes('1')" />
               </checkbox-group>
             </view>
           </view>
@@ -395,6 +395,7 @@ export default {
         mask: true,
       });
 
+      // TODO 后端接口只需要返回最近5天
       $http.get('api/diet-info/weight-plan/last').then((res) => {
         this.getRecodeWeightData(res.data.plan_id);
 
@@ -402,11 +403,6 @@ export default {
 
         res.data.recipes_list.forEach((item) => {
           let date = item.date;
-
-          // 只取日期的前五项
-          if (Object.keys(dateList).length > 4) {
-            return;
-          }
 
           if (dateList[date]) {
             dateList[date].push(item);
